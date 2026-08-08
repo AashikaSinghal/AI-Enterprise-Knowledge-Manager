@@ -1,0 +1,28 @@
+flowchart TD
+    A["Employee Question"] --> B["Knowledge Search<br/>(triage agent)"]
+
+    B -->|"named document"| C["Document Reader"]
+    B -->|"HR / IT policy question"| D["Policy Expert"]
+    B -->|"meeting / decision related"| E["Meeting Memory"]
+    B -->|"trivial question"| F["Direct Answer"]
+
+    C -->|"list_documents, read_document"| G["Recommendation Agent"]
+    D -->|"search_documents, read_document"| G
+    E -->|"log_meeting_note, search_documents"| G
+
+    G -->|"output_type = KnowledgeAnswer"| H["Structured Answer<br/>answer / source_documents / confidence"]
+
+    H --> I["Knowledge Curator"]
+    I -->|"output_type = CuratorFlag"| J{"Issue found?"}
+
+    J -->|"No"| K["Done — answer returned to employee"]
+    J -->|"Yes"| L["flag_policy_update tool called<br/>(needs_approval = True)"]
+
+    L --> M{{"Human Approval\nApprove? (y/n)"}}
+    M -->|"y — approve"| N["Document updated on disk"]
+    M -->|"n — reject"| O["Change discarded, no file modified"]
+
+    style M fill:#ffe08a,stroke:#c9922c,stroke-width:2px
+    style L fill:#ffe08a,stroke:#c9922c,stroke-width:2px
+    style N fill:#c8f0c8,stroke:#3a8a3a
+    style O fill:#f0c8c8,stroke:#8a3a3a

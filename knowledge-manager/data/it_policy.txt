@@ -1,0 +1,5 @@
+IT Policy
+
+VPN is required for all remote access to company systems.
+Passwords must be reset every 90 days.
+Report lost devices to IT within 24 hours.

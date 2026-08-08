@@ -1,0 +1,4 @@
+Meeting Notes
+
+Jan 5 standup: decided to move sprint review to Fridays.
+Jan 12 standup: agreed to add a new QA step before release.
